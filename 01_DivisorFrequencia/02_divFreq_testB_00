@@ -1,0 +1,35 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
+
+entity divFreq_TB is
+end divFreq_TB;
+
+architecture tbDivFreq	of divFreq_TB is
+
+signal s_acel: std_logic_vector (1 downto 0);
+signal s_clkIn, s_clkOut: std_logic;
+
+begin
+	
+	inst: entity work.divFreq(compDivFreq)
+			port map (acel   => s_acel,
+						 clkIn  => s_clkIn,
+						 clkOut => s_clkOut);
+						 
+	syncP: process
+			 begin
+				
+				s_clkIn <= '0'; wait for 10 ns;
+					
+				s_clkIn <= '1'; wait for 10 ns;
+			
+			end process;
+			
+	acelP: process
+			 begin
+				s_acel <= "00";
+				wait;
+				
+			 end process;	
+end tbDivFreq;		
