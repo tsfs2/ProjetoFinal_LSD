@@ -14,8 +14,8 @@ begin
 	
 	inst: entity work.divFreq(compDivFreq)
 			port map (acel   => s_acel,
-						 clkIn  => s_clkIn,
-						 clkOut => s_clkOut);
+				  clkIn  => s_clkIn,
+				  clkOut => s_clkOut);
 						 
 	syncP: process
 			 begin
