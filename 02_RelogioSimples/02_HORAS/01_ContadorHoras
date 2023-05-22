@@ -7,8 +7,7 @@ entity RelogioHora is
 	generic (contMax: integer :=23);
 	port (clk    : in std_logic;
 			enable : in std_logic;
-			contOut: out std_logic_vector(6 downto 0);
-			contFim: out std_logic);
+			contOut: out std_logic_vector(6 downto 0));
 end RelogioHora;
 
 architecture compRelogioHora of RelogioHora is
@@ -24,16 +23,8 @@ begin
 			if (enable = '1') then
 				if (s_cont = contMax) then
 					s_cont <= 0;
-					contFim <= '0';
 				else
 					s_cont <= s_cont + 1;
-					
-					if (s_cont = contMAX - 1) then
-						contFim <= '1';
-					
-					else
-						contFim <= '0';
-					end if;	
 				end if;
 			
 			else
