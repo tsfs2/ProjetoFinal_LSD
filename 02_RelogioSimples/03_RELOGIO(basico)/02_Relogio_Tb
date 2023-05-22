@@ -1,0 +1,36 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity RelogioBasico_Tb is
+end RelogioBasico_Tb;
+
+architecture compRelogioBasico_Tb of RelogioBasico_Tb is
+
+signal s_clk, s_enable, s_contFim  : std_logic;
+signal s_mins, s_hrs : std_logic_vector(6 downto 0);
+
+begin
+	
+	relogio: entity work.RelogioBasico(compRelogioBasico)
+				port map (clk     => s_clk,
+							 enable  => s_enable,
+							 mins    => s_mins,
+							 hrs     => s_hrs);
+	
+	syncP: process
+			 begin
+
+				s_clk <= '0'; wait for 10 ns;
+				s_clk <= '1'; wait for 10 ns;
+			 
+			 end process;
+	
+	combP: process
+			 begin
+			 
+				s_enable <= '1'; wait for 70 ns;
+				s_enable <= '0'; wait for 20 ns;
+				S_enable <= '1'; wait;
+			
+			 end process;
+end compRelogioBasico_Tb;			 
