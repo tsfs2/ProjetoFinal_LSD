@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Conv7Seg is
+
+	port (inPort : in std_logic_vector(3 downto 0);
+			outPort: out std_logic_vector(6 downto 0));
+			
+end Conv7Seg;
+
+architecture compConv7Seg of Conv7Seg is
+begin
+
+		outPort <= "1111001" when (inPort = "0001") else --1
+					  "0100100" when (inPort = "0010") else --2
+					  "0110000" when (inPort = "0011") else --3
+					  "0011001" when (inPort = "0100") else --4
+					  "0010010" when (inPort = "0101") else --5
+					  "0000010" when (inPort = "0110") else --6
+					  "1111000" when (inPort = "0111") else --7
+					  "0000000" when (inPort = "1000") else --8
+					  "0010000" when (inPort = "1001") else --9
+					  "1000000";
+			
+end compConv7Seg;			
