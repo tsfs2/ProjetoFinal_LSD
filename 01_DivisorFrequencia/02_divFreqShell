@@ -1,0 +1,20 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity divFreqShell is
+
+port (SW	 		 : in std_logic_vector (1 downto 0);
+		CLOCK_50  : in std_logic;
+		LEDG      : out std_logic_vector (0 downto 0));
+end divFreqShell;
+
+architecture compDivFreqShell of divFreqShell is
+
+begin
+
+	uut: entity work.divFreq(compDivFreq)
+		  port map (acel   => SW (1 downto 0),
+						clkIn  => CLOCK_50,
+						clkOut => LEDG(0));
+
+end compDivFreqShell;						
