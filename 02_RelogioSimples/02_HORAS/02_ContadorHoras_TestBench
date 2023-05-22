@@ -15,8 +15,7 @@ begin
 	mins: entity work.RelogioHora(compRelogioHora)
 			port map (clk     => s_clk,
 						 enable  => s_enable,
-						 contOut => s_contOut,
-						 contFim => s_contFim);
+						 contOut => s_contOut);
 	
 	syncP: process
 			 begin
