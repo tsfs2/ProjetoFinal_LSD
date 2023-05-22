@@ -1,0 +1,54 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Counter9UpDown_TB is
+end Counter9UpDown_TB;
+
+architecture Behavioral of Counter9UpDown_TB is
+
+component UPDOWN_COUNTER 
+    Port ( clk: 	  in std_logic;
+			  enable:  in std_logic;
+           reset:   in std_logic; 
+			  up_down: in std_logic; 
+           --counter: out integer range 0 to 511);
+				counter:out std_logic_vector(8 downto 0));
+end component;
+
+signal reset,enable,clk,up_down: std_logic;
+signal counter:integer range 0 to 511;
+  --signal counter:std_logic_vector(8 downto 0);
+
+begin
+uut: UPDOWN_COUNTER port map (clk => clk,
+										enable=>enable,
+										reset=>reset,
+										up_down => up_down,
+										counter=>counter);
+--clk stim
+clock_process :process
+begin
+     clk <= '0';
+     wait for 10 ns;
+     clk <= '1';
+     wait for 10 ns;
+end process;
+
+
+-- process stim
+stim_proc: process
+begin        
+
+    reset <= '1';
+	 enable<='1';
+    up_down <= '0';
+    wait for 20 ns;
+    reset <= '0';
+	 enable<='1';
+	 wait for 300 ns;
+    up_down <= '1';
+    enable<='1';
+    wait;
+	 
+end process;
+end Behavioral;
