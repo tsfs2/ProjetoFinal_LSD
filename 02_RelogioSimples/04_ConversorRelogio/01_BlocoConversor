@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
+
+entity ConversorRelogio is
+
+	port (horaIn : in std_logic_vector(6 downto 0);
+			horaDez, horaUnd: out std_logic_vector(3 downto 0));
+
+end ConversorRelogio;
+
+architecture compConversorRelogio of ConversorRelogio is
+signal s_horaUnd, s_horaDez : std_logic_vector (6 downto 0);
+begin
+
+	s_horaUnd <= std_logic_vector((unsigned(horaIn) rem 10));
+	s_horaDez <= std_logic_vector((unsigned(horaIn) / 10));
+	
+	horaUnd <= s_horaUnd(3 downto 0);
+	horaDez <= s_horaDez(3 downto 0);	
+	
+end compConversorRelogio;
