@@ -1,0 +1,24 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity RelogioBasico is
+
+	port (clk, enable : in std_logic;
+			hrs, mins: out std_logic_vector (6 downto 0));
+end RelogioBasico;
+
+architecture compRelogioBasico of RelogioBasico is
+signal s_HH : std_logic;
+begin
+
+	minutos: entity work.RelogioMinuto(compRelogioMinuto)
+				port map (clk    => clk,
+							 enable => enable,
+							 contOut=> mins,
+							 contFim=> s_HH);
+							 
+	horas: entity work.RelogioHora(compRelogioHora)
+				port map (clk    => clk,
+							 enable => s_HH,
+							 contOut=> hrs);
+end compRelogioBasico;							 
